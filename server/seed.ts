@@ -93,7 +93,7 @@ export async function seedDatabase() {
     {
       name: "Velobet",
       slug: "velobet",
-      logo: "/logos/velobet.svg",
+      logo: "/logos/velobet.png",
       description: "Premium crypto sportsbook offering 150% sports bonus up to $1,000, 10% monthly crypto cashback, and 9 supported languages.",
       longDescription: "Velobet is a premium crypto sportsbook launched in 2023 that has rapidly gained traction among crypto bettors. Their sports welcome bonus of 150% up to $1,000 with a reasonable 15x wagering requirement makes it one of the most attractive offers available. What sets Velobet apart is their 10% monthly crypto cashback with zero wagering requirements - a standout feature in the industry. The platform offers a 160% crypto-specific casino bonus, extensive sports coverage, and supports multiple cryptocurrencies including BTC, ETH, and BCH. Available in 9 languages with a dedicated mobile app, Velobet provides a polished betting experience for the global crypto community.",
       websiteUrl: "https://velobet.com",
