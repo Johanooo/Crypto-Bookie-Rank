@@ -21,17 +21,17 @@ function HeroSection() {
       </div>
       <div className="relative max-w-6xl mx-auto px-4 text-center">
         <Badge variant="outline" className="mb-6 bg-primary/10 border-primary/30 text-primary">
-          Trusted by 50,000+ Crypto Bettors
+          Trusted by 50,000+ No-KYC Bettors
         </Badge>
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
           Find the Best
-          <span className="block bg-gradient-to-r from-primary via-emerald-400 to-chart-4 bg-clip-text text-transparent">
-            Crypto Sportsbooks
+          <span className="block bg-gradient-to-r from-primary via-amber-400 to-yellow-300 bg-clip-text text-transparent">
+            No-KYC Sportsbooks
           </span>
         </h1>
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
-          Expert reviews, trust scores, and exclusive bonuses. We rate every crypto bookmaker
-          so you can bet with confidence.
+          Expert reviews, trust scores, and exclusive bonuses. We rate every no-KYC crypto bookmaker
+          so you can bet privately and with confidence.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
           <Link href="/bookmakers">
@@ -296,8 +296,8 @@ function TrustSection() {
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         <Card className="p-6">
-          <div className="w-12 h-12 rounded-md bg-emerald-500/10 flex items-center justify-center mb-4">
-            <Shield className="w-6 h-6 text-emerald-500" />
+          <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center mb-4">
+            <Shield className="w-6 h-6 text-primary" />
           </div>
           <h3 className="font-bold text-lg mb-2">Verified Payouts</h3>
           <p className="text-sm text-muted-foreground">

@@ -1,4 +1,4 @@
-# CryptoBookie - Crypto Betting Review Platform
+# BetWithoutKYC - No-KYC Crypto Betting Review Platform
 
 ## Overview
 A premium crypto betting review and comparison platform with trust scores, affiliate tracking, SEO optimization, and modern design. Built as an affiliate website to rank crypto bookmakers and monetize through referral links.
@@ -34,7 +34,7 @@ A premium crypto betting review and comparison platform with trust scores, affil
 - `/admin` - Admin dashboard for managing bookmakers, ratings, affiliate clicks
 
 ### Design
-- Color scheme: Dark crypto theme with green primary (Trust/Growth) and purple accent
+- Color scheme: Dark premium theme with amber/gold primary and deep blue accent
 - Font: Space Grotesk (modern, tech feel)
 - Trust Score badges with color coding: green (9+), green (7+), yellow (5+), orange (3+), red (<3)
 
