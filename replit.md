@@ -39,8 +39,8 @@ A premium crypto betting review and comparison platform with trust scores, affil
 - `/admin` - Admin dashboard for managing bookmakers, ratings, affiliate clicks
 
 ### Design
-- Color scheme: Dark premium theme with amber/gold primary and deep blue accent
-- Font: Space Grotesk (modern, tech feel)
+- Color scheme: Dark premium theme with metallic gold primary (hue 48) and deep blue accent, shiny gold gradient text with animated shimmer
+- Font: Inter (clean, professional)
 - Trust Score badges with color coding: green (9+), green (7+), yellow (5+), orange (3+), red (<3)
 
 ## User Preferences
