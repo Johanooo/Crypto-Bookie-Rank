@@ -4,6 +4,8 @@
 A premium crypto betting review and comparison platform with trust scores, affiliate tracking, SEO optimization, and modern design. Built as an affiliate website to rank crypto bookmakers and monetize through referral links.
 
 ## Recent Changes
+- 2026-02-11: Changed font from Space Grotesk to Inter for a more professional look
+- 2026-02-11: Added ScrollToTop component to fix page scroll on SPA navigation
 - 2026-02-11: Initial build - database schema, seed data, all frontend pages, admin dashboard, API routes
 - 2026-02-11: Updated bookmaker rankings - MyStake #1, Playbet #2, BC.Game #3, Velobet #4
 - 2026-02-11: Comprehensive mobile optimization across all pages
