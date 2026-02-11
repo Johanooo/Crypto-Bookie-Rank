@@ -16,7 +16,7 @@ import BlogPostPage from "@/pages/blog-post";
 import Admin from "@/pages/admin";
 import { Trophy, GitCompare, Gift, BookOpen, Settings, Sun, Moon, Menu, X } from "lucide-react";
 import { SiBitcoin } from "react-icons/si";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -161,19 +161,30 @@ function Footer() {
   );
 }
 
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+}
+
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/bookmakers" component={Bookmakers} />
-      <Route path="/bookmaker/:slug" component={BookmakerDetail} />
-      <Route path="/compare" component={Compare} />
-      <Route path="/bonuses" component={Bonuses} />
-      <Route path="/blog" component={Blog} />
-      <Route path="/blog/:slug" component={BlogPostPage} />
-      <Route path="/admin" component={Admin} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/bookmakers" component={Bookmakers} />
+        <Route path="/bookmaker/:slug" component={BookmakerDetail} />
+        <Route path="/compare" component={Compare} />
+        <Route path="/bonuses" component={Bonuses} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/blog/:slug" component={BlogPostPage} />
+        <Route path="/admin" component={Admin} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 
