@@ -9,9 +9,9 @@ export function StarRating({ rating, max = 5 }: { rating: number; max?: number }
   return (
     <div className="flex items-center gap-0.5" data-testid="star-rating">
       {Array.from({ length: full }).map((_, i) => (
-        <Star key={`full-${i}`} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        <Star key={`full-${i}`} className="w-4 h-4 fill-primary text-primary" />
       ))}
-      {hasHalf && <StarHalf className="w-4 h-4 fill-yellow-400 text-yellow-400" />}
+      {hasHalf && <StarHalf className="w-4 h-4 fill-primary text-primary" />}
       {Array.from({ length: empty }).map((_, i) => (
         <Star key={`empty-${i}`} className="w-4 h-4 text-muted-foreground/30" />
       ))}

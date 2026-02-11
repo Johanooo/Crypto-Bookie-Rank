@@ -23,13 +23,16 @@ function getCryptoIcon(crypto: string) {
 }
 
 function RatingBar({ label, value }: { label: string; value: number }) {
+  const barColor = value >= 8 ? "bg-emerald-500" : value >= 6 ? "bg-primary" : value >= 4 ? "bg-yellow-500" : "bg-red-500";
   return (
-    <div className="space-y-1">
+    <div className="space-y-1.5">
       <div className="flex items-center justify-between gap-2">
         <span className="text-sm">{label}</span>
         <span className="text-sm font-bold">{value.toFixed(1)}/10</span>
       </div>
-      <Progress value={value * 10} className="h-2" />
+      <div className="w-full h-2 rounded-md bg-muted overflow-hidden">
+        <div className={`h-full rounded-md transition-all duration-500 ${barColor}`} style={{ width: `${value * 10}%` }} />
+      </div>
     </div>
   );
 }
@@ -87,203 +90,216 @@ export default function BookmakerDetail() {
     );
   }
 
+  const isTopRanked = bookmaker.rank === 1;
+
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <Link href="/bookmakers">
-        <Button variant="ghost" className="mb-4" data-testid="button-back">
-          <ArrowLeft className="w-4 h-4 mr-2" /> Back to Rankings
-        </Button>
-      </Link>
-
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
-          <Card className="p-4 sm:p-6">
-            <div className="flex flex-col sm:flex-row items-start gap-4">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-md bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
-                <img src={bookmaker.logo} alt={bookmaker.name} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
-              </div>
-              <div className="flex-1 min-w-0 w-full">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-                  <div>
-                    <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-bookmaker-name">{bookmaker.name}</h1>
-                    <div className="flex items-center gap-3 mt-1 flex-wrap">
-                      <StarRating rating={bookmaker.overallRating} />
-                      <TrustScoreBadge score={bookmaker.trustScore} />
-                    </div>
+    <div>
+      <section className="relative overflow-hidden border-b border-border/50" style={{ background: "linear-gradient(160deg, hsl(222 50% 5%) 0%, hsl(220 40% 10%) 50%, hsl(222 45% 7%) 100%)" }}>
+        <div className="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full blur-[80px]" />
+        <div className="max-w-6xl mx-auto px-4 py-8 sm:py-10 relative">
+          <Link href="/bookmakers">
+            <Button variant="ghost" className="mb-4 text-gray-400" data-testid="button-back">
+              <ArrowLeft className="w-4 h-4 mr-2" /> Back to Rankings
+            </Button>
+          </Link>
+          <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+            <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-md flex items-center justify-center overflow-hidden flex-shrink-0 ${isTopRanked ? "bg-primary/10 ring-1 ring-primary/20" : "bg-white/5"}`}>
+              <img src={bookmaker.logo} alt={bookmaker.name} className="w-12 h-12 sm:w-14 sm:h-14 object-contain" data-testid="img-bookmaker-logo" />
+            </div>
+            <div className="flex-1 min-w-0 w-full">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white" data-testid="text-bookmaker-name">{bookmaker.name}</h1>
+                    {isTopRanked && (
+                      <Badge className="bg-primary text-primary-foreground no-default-hover-elevate no-default-active-elevate">
+                        #1 Ranked
+                      </Badge>
+                    )}
                   </div>
-                  {bookmaker.affiliateUrl && (
-                    <Button onClick={handleVisitClick} className="w-full sm:w-auto" data-testid="button-visit-site">
-                      Visit Site <ExternalLink className="w-4 h-4 ml-1" />
-                    </Button>
-                  )}
+                  <div className="flex items-center gap-3 mt-2 flex-wrap">
+                    <StarRating rating={bookmaker.overallRating} />
+                    <TrustScoreBadge score={bookmaker.trustScore} />
+                  </div>
                 </div>
-                <p className="text-sm sm:text-base text-muted-foreground mt-3">{bookmaker.description}</p>
+                {bookmaker.affiliateUrl && (
+                  <Button onClick={handleVisitClick} className={`w-full sm:w-auto ${isTopRanked ? "btn-glow" : ""}`} data-testid="button-visit-site">
+                    Visit Site <ExternalLink className="w-4 h-4 ml-1" />
+                  </Button>
+                )}
               </div>
+              <p className="text-sm sm:text-base text-gray-400 mt-3 max-w-2xl">{bookmaker.description}</p>
             </div>
-          </Card>
+          </div>
+        </div>
+      </section>
 
-          <Card className="p-4 sm:p-6">
-            <h2 className="text-lg sm:text-xl font-bold mb-4">Detailed Ratings</h2>
-            <div className="space-y-4">
-              <RatingBar label="Trust & Reliability" value={bookmaker.trustScore} />
-              <RatingBar label="Odds Quality" value={bookmaker.oddsRating} />
-              <RatingBar label="Bonus Value" value={bookmaker.bonusRating} />
-              <RatingBar label="User Interface" value={bookmaker.uiRating} />
-              <RatingBar label="Customer Support" value={bookmaker.supportRating} />
-            </div>
-          </Card>
-
-          {bookmaker.longDescription && (
+      <div className="max-w-6xl mx-auto px-4 py-6 sm:py-8">
+        <div className="grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-6">
             <Card className="p-4 sm:p-6">
-              <h2 className="text-lg sm:text-xl font-bold mb-4">Full Review</h2>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line">{bookmaker.longDescription}</p>
-            </Card>
-          )}
-
-          <Card className="p-4 sm:p-6">
-            <h2 className="text-lg sm:text-xl font-bold mb-4">Pros & Cons</h2>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-semibold text-emerald-500 mb-3 flex items-center gap-2">
-                  <Check className="w-4 h-4" /> Pros
-                </h3>
-                <ul className="space-y-2">
-                  {bookmaker.pros.map((pro, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                      <span>{pro}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold text-red-500 mb-3 flex items-center gap-2">
-                  <X className="w-4 h-4" /> Cons
-                </h3>
-                <ul className="space-y-2">
-                  {bookmaker.cons.map((con, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <X className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
-                      <span>{con}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Card>
-
-          {bonuses && bonuses.length > 0 && (
-            <Card className="p-4 sm:p-6">
-              <h2 className="text-lg sm:text-xl font-bold mb-4">Available Bonuses</h2>
+              <h2 className="text-lg sm:text-xl font-bold mb-4">Detailed Ratings</h2>
               <div className="space-y-4">
-                {bonuses.map((bonus) => (
-                  <div key={bonus.id} className="border rounded-md p-3 sm:p-4">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                      <div>
-                        <h3 className="font-bold">{bonus.title}</h3>
-                        <p className="text-sm text-muted-foreground">{bonus.description}</p>
+                <RatingBar label="Trust & Reliability" value={bookmaker.trustScore} />
+                <RatingBar label="Odds Quality" value={bookmaker.oddsRating} />
+                <RatingBar label="Bonus Value" value={bookmaker.bonusRating} />
+                <RatingBar label="User Interface" value={bookmaker.uiRating} />
+                <RatingBar label="Customer Support" value={bookmaker.supportRating} />
+              </div>
+            </Card>
+
+            {bookmaker.longDescription && (
+              <Card className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-bold mb-4">Full Review</h2>
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line">{bookmaker.longDescription}</p>
+              </Card>
+            )}
+
+            <Card className="p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-bold mb-4">Pros & Cons</h2>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-semibold text-emerald-500 mb-3 flex items-center gap-2">
+                    <Check className="w-4 h-4" /> Pros
+                  </h3>
+                  <ul className="space-y-2">
+                    {bookmaker.pros.map((pro, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                        <span>{pro}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-red-500 mb-3 flex items-center gap-2">
+                    <X className="w-4 h-4" /> Cons
+                  </h3>
+                  <ul className="space-y-2">
+                    {bookmaker.cons.map((con, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <X className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                        <span>{con}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Card>
+
+            {bonuses && bonuses.length > 0 && (
+              <Card className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-bold mb-4">Available Bonuses</h2>
+                <div className="space-y-4">
+                  {bonuses.map((bonus) => (
+                    <div key={bonus.id} className="border rounded-md p-3 sm:p-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                        <div>
+                          <h3 className="font-bold">{bonus.title}</h3>
+                          <p className="text-sm text-muted-foreground">{bonus.description}</p>
+                        </div>
+                        <span className="text-lg font-bold text-primary">{bonus.value}</span>
                       </div>
-                      <span className="text-lg font-bold text-primary">{bonus.value}</span>
+                      <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground flex-wrap">
+                        {bonus.bonusCode && (
+                          <Badge variant="secondary" className="font-mono text-xs">{bonus.bonusCode}</Badge>
+                        )}
+                        {bonus.wagerRequirement && <span>Wager: {bonus.wagerRequirement}</span>}
+                        {bonus.minDeposit && <span>Min Deposit: {bonus.minDeposit}</span>}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground flex-wrap">
-                      {bonus.bonusCode && (
-                        <Badge variant="secondary" className="font-mono text-xs">{bonus.bonusCode}</Badge>
-                      )}
-                      {bonus.wagerRequirement && <span>Wager: {bonus.wagerRequirement}</span>}
-                      {bonus.minDeposit && <span>Min Deposit: {bonus.minDeposit}</span>}
-                    </div>
+                  ))}
+                </div>
+              </Card>
+            )}
+          </div>
+
+          <div className="space-y-6">
+            <Card className="p-4 sm:p-6">
+              <h3 className="font-bold mb-4">Quick Info</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Zap className="w-4 h-4 flex-shrink-0" />
+                    <span>Payout Speed</span>
                   </div>
+                  <span className="text-sm font-semibold">{bookmaker.payoutSpeed}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <CreditCard className="w-4 h-4 flex-shrink-0" />
+                    <span>Min Deposit</span>
+                  </div>
+                  <span className="text-sm font-semibold">{bookmaker.minDeposit}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <CreditCard className="w-4 h-4 flex-shrink-0" />
+                    <span>Max Payout</span>
+                  </div>
+                  <span className="text-sm font-semibold">{bookmaker.maxPayout}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Calendar className="w-4 h-4 flex-shrink-0" />
+                    <span>Established</span>
+                  </div>
+                  <span className="text-sm font-semibold">{bookmaker.established || "N/A"}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Shield className="w-4 h-4 flex-shrink-0" />
+                    <span>License</span>
+                  </div>
+                  <span className="text-sm font-semibold">{bookmaker.license || "N/A"}</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Globe className="w-4 h-4 flex-shrink-0" />
+                    <span>Website</span>
+                  </div>
+                  <a href={bookmaker.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-primary">
+                    Visit
+                  </a>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-4 sm:p-6">
+              <h3 className="font-bold mb-4">Trust Score</h3>
+              <TrustScoreBadge score={bookmaker.trustScore} size="lg" />
+              <div className="mt-4">
+                <TrustScoreBar score={bookmaker.trustScore} />
+              </div>
+            </Card>
+
+            <Card className="p-4 sm:p-6">
+              <h3 className="font-bold mb-3">Accepted Cryptos</h3>
+              <div className="flex flex-wrap gap-2">
+                {bookmaker.cryptosAccepted.map((crypto) => (
+                  <Badge key={crypto} variant="outline" className="gap-1.5">
+                    {getCryptoIcon(crypto)}
+                    {crypto}
+                  </Badge>
                 ))}
               </div>
             </Card>
-          )}
-        </div>
 
-        <div className="space-y-6">
-          <Card className="p-4 sm:p-6">
-            <h3 className="font-bold mb-4">Quick Info</h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Zap className="w-4 h-4 flex-shrink-0" />
-                  <span>Payout Speed</span>
-                </div>
-                <span className="text-sm font-semibold">{bookmaker.payoutSpeed}</span>
+            <Card className="p-4 sm:p-6">
+              <h3 className="font-bold mb-3">Sports Covered</h3>
+              <div className="flex flex-wrap gap-2">
+                {bookmaker.sportsCovered.map((sport) => (
+                  <Badge key={sport} variant="secondary">{sport}</Badge>
+                ))}
               </div>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CreditCard className="w-4 h-4 flex-shrink-0" />
-                  <span>Min Deposit</span>
-                </div>
-                <span className="text-sm font-semibold">{bookmaker.minDeposit}</span>
-              </div>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CreditCard className="w-4 h-4 flex-shrink-0" />
-                  <span>Max Payout</span>
-                </div>
-                <span className="text-sm font-semibold">{bookmaker.maxPayout}</span>
-              </div>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Calendar className="w-4 h-4 flex-shrink-0" />
-                  <span>Established</span>
-                </div>
-                <span className="text-sm font-semibold">{bookmaker.established || "N/A"}</span>
-              </div>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Shield className="w-4 h-4 flex-shrink-0" />
-                  <span>License</span>
-                </div>
-                <span className="text-sm font-semibold">{bookmaker.license || "N/A"}</span>
-              </div>
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Globe className="w-4 h-4 flex-shrink-0" />
-                  <span>Website</span>
-                </div>
-                <a href={bookmaker.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-primary">
-                  Visit
-                </a>
-              </div>
-            </div>
-          </Card>
+            </Card>
 
-          <Card className="p-4 sm:p-6">
-            <h3 className="font-bold mb-4">Trust Score</h3>
-            <TrustScoreBadge score={bookmaker.trustScore} size="lg" />
-            <div className="mt-4">
-              <TrustScoreBar score={bookmaker.trustScore} />
-            </div>
-          </Card>
-
-          <Card className="p-4 sm:p-6">
-            <h3 className="font-bold mb-3">Accepted Cryptos</h3>
-            <div className="flex flex-wrap gap-2">
-              {bookmaker.cryptosAccepted.map((crypto) => (
-                <Badge key={crypto} variant="outline" className="gap-1.5">
-                  {getCryptoIcon(crypto)}
-                  {crypto}
-                </Badge>
-              ))}
-            </div>
-          </Card>
-
-          <Card className="p-4 sm:p-6">
-            <h3 className="font-bold mb-3">Sports Covered</h3>
-            <div className="flex flex-wrap gap-2">
-              {bookmaker.sportsCovered.map((sport) => (
-                <Badge key={sport} variant="secondary">{sport}</Badge>
-              ))}
-            </div>
-          </Card>
-
-          {bookmaker.affiliateUrl && (
-            <Button onClick={handleVisitClick} className="w-full" size="lg" data-testid="button-visit-bottom">
-              Visit {bookmaker.name} <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-          )}
+            {bookmaker.affiliateUrl && (
+              <Button onClick={handleVisitClick} className={`w-full ${isTopRanked ? "btn-glow" : ""}`} size="lg" data-testid="button-visit-bottom">
+                Visit {bookmaker.name} <ArrowRight className="w-4 h-4 ml-1" />
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </div>

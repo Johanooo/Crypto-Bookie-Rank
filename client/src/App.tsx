@@ -40,13 +40,14 @@ function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-[9999] border-b bg-background/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-[9999] bg-background/80 backdrop-blur-md border-b border-border/50">
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between gap-4 h-14">
           <Link href="/">
             <div className="flex items-center gap-2 cursor-pointer" data-testid="link-logo">
               <img src="/logo.png" alt="BetWithoutKYC" className="w-8 h-8 rounded-md" />
-              <span className="font-bold text-lg hidden sm:block">BetWithoutKYC</span>
+              <span className="font-bold text-lg hidden sm:block gold-gradient-text">BetWithoutKYC</span>
             </div>
           </Link>
 
@@ -66,7 +67,7 @@ function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 flex-wrap">
             <Link href="/admin">
               <Button variant="ghost" size="icon" data-testid="nav-admin">
                 <Settings className="w-4 h-4" />
@@ -109,13 +110,13 @@ function Navbar() {
 
 function Footer() {
   return (
-    <footer className="border-t bg-card mt-12 sm:mt-16">
+    <footer className="border-t border-border/50 mt-12 sm:mt-16" style={{ background: "linear-gradient(180deg, hsl(222 35% 8%) 0%, hsl(222 40% 5%) 100%)" }}>
       <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <img src="/logo.png" alt="BetWithoutKYC" className="w-8 h-8 rounded-md" />
-              <span className="font-bold text-lg">BetWithoutKYC</span>
+              <span className="font-bold text-lg gold-gradient-text">BetWithoutKYC</span>
             </div>
             <p className="text-sm text-muted-foreground">
               The most trusted crypto sportsbook review platform. Expert ratings, trust scores, and exclusive bonuses.
