@@ -19,8 +19,8 @@ export default function Blog() {
           <BookOpen className="w-3 h-3 mr-1" />
           Guides & News
         </Badge>
-        <h1 className="text-3xl font-bold" data-testid="text-page-title">Crypto Betting Blog</h1>
-        <p className="text-muted-foreground mt-1">Expert guides, news, and tips for crypto sports betting</p>
+        <h1 className="text-2xl sm:text-3xl font-bold" data-testid="text-page-title">Crypto Betting Blog</h1>
+        <p className="text-muted-foreground mt-1 text-sm sm:text-base">Expert guides, news, and tips for crypto sports betting</p>
       </div>
 
       {isLoading ? (

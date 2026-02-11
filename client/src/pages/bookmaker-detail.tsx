@@ -25,7 +25,7 @@ function getCryptoIcon(crypto: string) {
 function RatingBar({ label, value }: { label: string; value: number }) {
   return (
     <div className="space-y-1">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2">
         <span className="text-sm">{label}</span>
         <span className="text-sm font-bold">{value.toFixed(1)}/10</span>
       </div>
@@ -65,8 +65,8 @@ export default function BookmakerDetail() {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">
         <Skeleton className="h-8 w-48 mb-4" />
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 space-y-4">
+        <div className="grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-4">
             <Skeleton className="h-64 w-full rounded-md" />
             <Skeleton className="h-48 w-full rounded-md" />
           </div>
@@ -95,35 +95,35 @@ export default function BookmakerDetail() {
         </Button>
       </Link>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 space-y-6">
-          <Card className="p-6">
-            <div className="flex items-start gap-4 flex-wrap">
-              <div className="w-16 h-16 rounded-md bg-muted flex items-center justify-center overflow-hidden">
-                <img src={bookmaker.logo} alt={bookmaker.name} className="w-12 h-12 object-contain" />
+      <div className="grid lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-6">
+          <Card className="p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row items-start gap-4">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-md bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
+                <img src={bookmaker.logo} alt={bookmaker.name} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2 flex-wrap">
+              <div className="flex-1 min-w-0 w-full">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                   <div>
-                    <h1 className="text-2xl font-bold" data-testid="text-bookmaker-name">{bookmaker.name}</h1>
+                    <h1 className="text-xl sm:text-2xl font-bold" data-testid="text-bookmaker-name">{bookmaker.name}</h1>
                     <div className="flex items-center gap-3 mt-1 flex-wrap">
                       <StarRating rating={bookmaker.overallRating} />
                       <TrustScoreBadge score={bookmaker.trustScore} />
                     </div>
                   </div>
                   {bookmaker.affiliateUrl && (
-                    <Button onClick={handleVisitClick} data-testid="button-visit-site">
+                    <Button onClick={handleVisitClick} className="w-full sm:w-auto" data-testid="button-visit-site">
                       Visit Site <ExternalLink className="w-4 h-4 ml-1" />
                     </Button>
                   )}
                 </div>
-                <p className="text-muted-foreground mt-3">{bookmaker.description}</p>
+                <p className="text-sm sm:text-base text-muted-foreground mt-3">{bookmaker.description}</p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-6">
-            <h2 className="text-xl font-bold mb-4">Detailed Ratings</h2>
+          <Card className="p-4 sm:p-6">
+            <h2 className="text-lg sm:text-xl font-bold mb-4">Detailed Ratings</h2>
             <div className="space-y-4">
               <RatingBar label="Trust & Reliability" value={bookmaker.trustScore} />
               <RatingBar label="Odds Quality" value={bookmaker.oddsRating} />
@@ -134,15 +134,15 @@ export default function BookmakerDetail() {
           </Card>
 
           {bookmaker.longDescription && (
-            <Card className="p-6">
-              <h2 className="text-xl font-bold mb-4">Full Review</h2>
-              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{bookmaker.longDescription}</p>
+            <Card className="p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-bold mb-4">Full Review</h2>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line">{bookmaker.longDescription}</p>
             </Card>
           )}
 
-          <Card className="p-6">
-            <h2 className="text-xl font-bold mb-4">Pros & Cons</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+          <Card className="p-4 sm:p-6">
+            <h2 className="text-lg sm:text-xl font-bold mb-4">Pros & Cons</h2>
+            <div className="grid sm:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold text-emerald-500 mb-3 flex items-center gap-2">
                   <Check className="w-4 h-4" /> Pros
@@ -173,12 +173,12 @@ export default function BookmakerDetail() {
           </Card>
 
           {bonuses && bonuses.length > 0 && (
-            <Card className="p-6">
-              <h2 className="text-xl font-bold mb-4">Available Bonuses</h2>
+            <Card className="p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-bold mb-4">Available Bonuses</h2>
               <div className="space-y-4">
                 {bonuses.map((bonus) => (
-                  <div key={bonus.id} className="border rounded-md p-4">
-                    <div className="flex items-start justify-between gap-2 flex-wrap">
+                  <div key={bonus.id} className="border rounded-md p-3 sm:p-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                       <div>
                         <h3 className="font-bold">{bonus.title}</h3>
                         <p className="text-sm text-muted-foreground">{bonus.description}</p>
@@ -200,47 +200,47 @@ export default function BookmakerDetail() {
         </div>
 
         <div className="space-y-6">
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             <h3 className="font-bold mb-4">Quick Info</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Zap className="w-4 h-4" />
+                  <Zap className="w-4 h-4 flex-shrink-0" />
                   <span>Payout Speed</span>
                 </div>
                 <span className="text-sm font-semibold">{bookmaker.payoutSpeed}</span>
               </div>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CreditCard className="w-4 h-4" />
+                  <CreditCard className="w-4 h-4 flex-shrink-0" />
                   <span>Min Deposit</span>
                 </div>
                 <span className="text-sm font-semibold">{bookmaker.minDeposit}</span>
               </div>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CreditCard className="w-4 h-4" />
+                  <CreditCard className="w-4 h-4 flex-shrink-0" />
                   <span>Max Payout</span>
                 </div>
                 <span className="text-sm font-semibold">{bookmaker.maxPayout}</span>
               </div>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="w-4 h-4 flex-shrink-0" />
                   <span>Established</span>
                 </div>
                 <span className="text-sm font-semibold">{bookmaker.established || "N/A"}</span>
               </div>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Shield className="w-4 h-4" />
+                  <Shield className="w-4 h-4 flex-shrink-0" />
                   <span>License</span>
                 </div>
                 <span className="text-sm font-semibold">{bookmaker.license || "N/A"}</span>
               </div>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Globe className="w-4 h-4" />
+                  <Globe className="w-4 h-4 flex-shrink-0" />
                   <span>Website</span>
                 </div>
                 <a href={bookmaker.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-primary">
@@ -250,7 +250,7 @@ export default function BookmakerDetail() {
             </div>
           </Card>
 
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             <h3 className="font-bold mb-4">Trust Score</h3>
             <TrustScoreBadge score={bookmaker.trustScore} size="lg" />
             <div className="mt-4">
@@ -258,7 +258,7 @@ export default function BookmakerDetail() {
             </div>
           </Card>
 
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             <h3 className="font-bold mb-3">Accepted Cryptos</h3>
             <div className="flex flex-wrap gap-2">
               {bookmaker.cryptosAccepted.map((crypto) => (
@@ -270,7 +270,7 @@ export default function BookmakerDetail() {
             </div>
           </Card>
 
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             <h3 className="font-bold mb-3">Sports Covered</h3>
             <div className="flex flex-wrap gap-2">
               {bookmaker.sportsCovered.map((sport) => (

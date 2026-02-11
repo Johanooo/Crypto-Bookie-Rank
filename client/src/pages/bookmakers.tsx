@@ -45,12 +45,12 @@ export default function Bookmakers() {
           <Trophy className="w-3 h-3 mr-1" />
           Full Rankings
         </Badge>
-        <h1 className="text-3xl font-bold" data-testid="text-page-title">All Crypto Bookmakers</h1>
-        <p className="text-muted-foreground mt-1">Compare ratings, trust scores, and find the perfect bookmaker</p>
+        <h1 className="text-2xl sm:text-3xl font-bold" data-testid="text-page-title">All Crypto Bookmakers</h1>
+        <p className="text-muted-foreground mt-1 text-sm sm:text-base">Compare ratings, trust scores, and find the perfect bookmaker</p>
       </div>
 
-      <div className="flex items-center gap-3 mb-6 flex-wrap">
-        <div className="relative flex-1 min-w-[200px]">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6">
+        <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search bookmakers..."
@@ -60,30 +60,32 @@ export default function Bookmakers() {
             data-testid="input-search"
           />
         </div>
-        <Select value={sortBy} onValueChange={setSortBy}>
-          <SelectTrigger className="w-[160px]" data-testid="select-sort">
-            <SelectValue placeholder="Sort by" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="rank">Rank</SelectItem>
-            <SelectItem value="rating">Rating</SelectItem>
-            <SelectItem value="trust">Trust Score</SelectItem>
-            <SelectItem value="name">Name</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select value={filterTrust} onValueChange={setFilterTrust}>
-          <SelectTrigger className="w-[160px]" data-testid="select-filter-trust">
-            <Filter className="w-4 h-4 mr-2" />
-            <SelectValue placeholder="Trust" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Trust Levels</SelectItem>
-            <SelectItem value="excellent">Excellent (9+)</SelectItem>
-            <SelectItem value="good">Good (7-9)</SelectItem>
-            <SelectItem value="average">Average (5-7)</SelectItem>
-            <SelectItem value="poor">Poor (&lt;5)</SelectItem>
-          </SelectContent>
-        </Select>
+        <div className="flex items-center gap-3">
+          <Select value={sortBy} onValueChange={setSortBy}>
+            <SelectTrigger className="flex-1 sm:w-[160px]" data-testid="select-sort">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="rank">Rank</SelectItem>
+              <SelectItem value="rating">Rating</SelectItem>
+              <SelectItem value="trust">Trust Score</SelectItem>
+              <SelectItem value="name">Name</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={filterTrust} onValueChange={setFilterTrust}>
+            <SelectTrigger className="flex-1 sm:w-[160px]" data-testid="select-filter-trust">
+              <Filter className="w-4 h-4 mr-2" />
+              <SelectValue placeholder="Trust" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Trust Levels</SelectItem>
+              <SelectItem value="excellent">Excellent (9+)</SelectItem>
+              <SelectItem value="good">Good (7-9)</SelectItem>
+              <SelectItem value="average">Average (5-7)</SelectItem>
+              <SelectItem value="poor">Poor (&lt;5)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       {isLoading ? (
@@ -105,45 +107,51 @@ export default function Bookmakers() {
           {filtered?.map((bm, i) => (
             <Card key={bm.id} className="hover-elevate overflow-visible p-0" data-testid={`card-bookmaker-list-${bm.slug}`}>
               <div className="p-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex-shrink-0 text-center w-8">
-                    <span className="text-lg font-bold text-muted-foreground">#{bm.rank}</span>
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 text-center w-6 sm:w-8 pt-1">
+                    <span className="text-sm sm:text-lg font-bold text-muted-foreground">#{bm.rank}</span>
                   </div>
-                  <div className="w-12 h-12 rounded-md bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
-                    <img src={bm.logo} alt={bm.name} className="w-8 h-8 object-contain" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-md bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img src={bm.logo} alt={bm.name} className="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2 flex-wrap">
                       <div>
-                        <h3 className="font-bold text-lg">{bm.name}</h3>
-                        <div className="flex items-center gap-3 mt-0.5 flex-wrap">
+                        <h3 className="font-bold text-base sm:text-lg">{bm.name}</h3>
+                        <div className="flex items-center gap-2 sm:gap-3 mt-0.5 flex-wrap">
                           <StarRating rating={bm.overallRating} />
                           <TrustScoreBadge score={bm.trustScore} size="sm" />
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 flex-wrap">
+                      <div className="hidden sm:flex items-center gap-2 flex-wrap">
                         <Badge variant="secondary" className="text-xs">
                           <Zap className="w-3 h-3 mr-1" /> {bm.payoutSpeed}
                         </Badge>
                         {bm.featured && <Badge className="text-xs">Featured</Badge>}
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-1 line-clamp-1">{bm.description}</p>
+                    <p className="text-sm text-muted-foreground mt-1 line-clamp-1 hidden sm:block">{bm.description}</p>
+                    <div className="flex items-center gap-2 mt-2 sm:hidden flex-wrap">
+                      <Badge variant="secondary" className="text-xs">
+                        <Zap className="w-3 h-3 mr-1" /> {bm.payoutSpeed}
+                      </Badge>
+                      {bm.featured && <Badge className="text-xs">Featured</Badge>}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <Link href={`/bookmaker/${bm.slug}`}>
-                      <Button variant="outline" data-testid={`button-review-${bm.slug}`}>
-                        Review
+                </div>
+                <div className="flex items-center gap-2 mt-3 pl-9 sm:pl-0 sm:justify-end">
+                  <Link href={`/bookmaker/${bm.slug}`} className="flex-1 sm:flex-none">
+                    <Button variant="outline" className="w-full sm:w-auto" data-testid={`button-review-${bm.slug}`}>
+                      Review
+                    </Button>
+                  </Link>
+                  {bm.affiliateUrl && (
+                    <a href={bm.affiliateUrl} target="_blank" rel="noopener noreferrer nofollow" className="flex-1 sm:flex-none">
+                      <Button className="w-full sm:w-auto" data-testid={`button-visit-${bm.slug}`}>
+                        Visit <ArrowRight className="w-4 h-4 ml-1" />
                       </Button>
-                    </Link>
-                    {bm.affiliateUrl && (
-                      <a href={bm.affiliateUrl} target="_blank" rel="noopener noreferrer nofollow">
-                        <Button data-testid={`button-visit-${bm.slug}`}>
-                          Visit <ArrowRight className="w-4 h-4 ml-1" />
-                        </Button>
-                      </a>
-                    )}
-                  </div>
+                    </a>
+                  )}
                 </div>
               </div>
             </Card>

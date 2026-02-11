@@ -109,9 +109,9 @@ function Navbar() {
 
 function Footer() {
   return (
-    <footer className="border-t bg-card mt-16">
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+    <footer className="border-t bg-card mt-12 sm:mt-16">
+      <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <img src="/logo.png" alt="BetWithoutKYC" className="w-8 h-8 rounded-md" />
@@ -148,7 +148,7 @@ function Footer() {
             </p>
           </div>
         </div>
-        <div className="border-t pt-6 flex items-center justify-between gap-4 flex-wrap">
+        <div className="border-t pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
           <p className="text-xs text-muted-foreground">
             2026 BetWithoutKYC. All rights reserved. Affiliate disclosure: We may earn commissions from qualifying purchases.
           </p>

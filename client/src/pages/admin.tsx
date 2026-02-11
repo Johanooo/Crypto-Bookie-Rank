@@ -56,21 +56,21 @@ function BookmakersTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-4 flex-wrap">
-        <h2 className="text-xl font-bold">Manage Bookmakers</h2>
+        <h2 className="text-lg sm:text-xl font-bold">Manage Bookmakers</h2>
         <AddBookmakerDialog />
       </div>
 
       <div className="space-y-3">
         {bookmakers?.map((bm) => (
-          <Card key={bm.id} className="p-4" data-testid={`admin-card-${bm.slug}`}>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-md bg-muted flex items-center justify-center flex-shrink-0">
-                <img src={bm.logo} alt={bm.name} className="w-7 h-7 object-contain" />
+          <Card key={bm.id} className="p-3 sm:p-4" data-testid={`admin-card-${bm.slug}`}>
+            <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-md bg-muted flex items-center justify-center flex-shrink-0">
+                <img src={bm.logo} alt={bm.name} className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-bold">{bm.name}</span>
-                  <Badge variant="outline" className="text-xs">Rank #{bm.rank}</Badge>
+                  <span className="font-bold text-sm sm:text-base">{bm.name}</span>
+                  <Badge variant="outline" className="text-xs">#{bm.rank}</Badge>
                   <TrustScoreBadge score={bm.trustScore} size="sm" />
                   {bm.featured && <Badge className="text-xs">Featured</Badge>}
                   {!bm.isActive && <Badge variant="destructive" className="text-xs">Inactive</Badge>}
@@ -80,7 +80,7 @@ function BookmakersTab() {
                   <span>Clicks: {bm.clickCount}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="flex items-center gap-1 flex-shrink-0">
                 <EditBookmakerDialog bookmaker={bm} />
                 <Button
                   variant="ghost"
@@ -159,12 +159,12 @@ function EditBookmakerDialog({ bookmaker }: { bookmaker: Bookmaker }) {
           <Pencil className="w-4 h-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-h-[90vh] overflow-y-auto max-w-lg w-[calc(100vw-2rem)]">
         <DialogHeader>
           <DialogTitle>Edit {bookmaker.name}</DialogTitle>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="text-sm font-medium">Overall Rating</label>
               <Input type="number" step="0.1" min="0" max="10" {...form.register("overallRating")} data-testid="input-overall-rating" />
@@ -206,7 +206,7 @@ function EditBookmakerDialog({ bookmaker }: { bookmaker: Bookmaker }) {
             <label className="text-sm font-medium">Affiliate URL</label>
             <Input {...form.register("affiliateUrl")} data-testid="input-affiliate-url" />
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-wrap">
             <label className="flex items-center gap-2 text-sm">
               <Switch checked={form.watch("featured")} onCheckedChange={(v) => form.setValue("featured", v)} />
               Featured
@@ -233,7 +233,7 @@ function AddBookmakerDialog() {
     defaultValues: {
       name: "",
       slug: "",
-      logo: "https://img.icons8.com/fluency/96/blockchain-technology.png",
+      logo: "/logos/stake.png",
       description: "",
       websiteUrl: "",
       affiliateUrl: "",
@@ -287,7 +287,7 @@ function AddBookmakerDialog() {
           <Plus className="w-4 h-4 mr-2" /> Add Bookmaker
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="max-w-lg w-[calc(100vw-2rem)]">
         <DialogHeader>
           <DialogTitle>Add Bookmaker</DialogTitle>
         </DialogHeader>
@@ -304,7 +304,7 @@ function AddBookmakerDialog() {
             <label className="text-sm font-medium">Description</label>
             <Textarea {...form.register("description")} data-testid="input-description" />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="text-sm font-medium">Website URL</label>
               <Input {...form.register("websiteUrl")} />
@@ -314,7 +314,7 @@ function AddBookmakerDialog() {
               <Input {...form.register("affiliateUrl")} />
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             <div>
               <label className="text-sm font-medium">Rating</label>
               <Input type="number" step="0.1" min="0" max="10" {...form.register("overallRating")} />
@@ -357,19 +357,19 @@ function AffiliateTab() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-bold">Affiliate Performance</h2>
-      <div className="grid md:grid-cols-3 gap-4 mb-6">
+      <h2 className="text-lg sm:text-xl font-bold">Affiliate Performance</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         <Card className="p-4">
           <p className="text-sm text-muted-foreground">Total Clicks</p>
-          <p className="text-3xl font-bold">{clicks?.length || 0}</p>
+          <p className="text-2xl sm:text-3xl font-bold">{clicks?.length || 0}</p>
         </Card>
         <Card className="p-4">
           <p className="text-sm text-muted-foreground">Active Bookmakers</p>
-          <p className="text-3xl font-bold">{sortedEntries.length}</p>
+          <p className="text-2xl sm:text-3xl font-bold">{sortedEntries.length}</p>
         </Card>
         <Card className="p-4">
           <p className="text-sm text-muted-foreground">Today's Clicks</p>
-          <p className="text-3xl font-bold">
+          <p className="text-2xl sm:text-3xl font-bold">
             {clicks?.filter(c => c.clickedAt.startsWith(new Date().toISOString().split("T")[0])).length || 0}
           </p>
         </Card>
@@ -382,8 +382,8 @@ function AffiliateTab() {
         ) : (
           <div className="space-y-3">
             {sortedEntries.map(([id, count]) => (
-              <div key={id} className="flex items-center justify-between">
-                <span className="font-medium">{getBookmakerName(id)}</span>
+              <div key={id} className="flex items-center justify-between gap-2">
+                <span className="font-medium text-sm sm:text-base">{getBookmakerName(id)}</span>
                 <Badge variant="secondary">{count} clicks</Badge>
               </div>
             ))}
@@ -402,17 +402,21 @@ export default function Admin() {
           <Settings className="w-3 h-3 mr-1" />
           Admin
         </Badge>
-        <h1 className="text-3xl font-bold" data-testid="text-page-title">Admin Dashboard</h1>
-        <p className="text-muted-foreground mt-1">Manage bookmakers, ratings, trust scores, and affiliate tracking</p>
+        <h1 className="text-2xl sm:text-3xl font-bold" data-testid="text-page-title">Admin Dashboard</h1>
+        <p className="text-muted-foreground mt-1 text-sm sm:text-base">Manage bookmakers, ratings, trust scores, and affiliate tracking</p>
       </div>
 
       <Tabs defaultValue="bookmakers">
-        <TabsList className="mb-6">
-          <TabsTrigger value="bookmakers" data-testid="tab-bookmakers">
-            <Trophy className="w-4 h-4 mr-2" /> Bookmakers
+        <TabsList className="mb-6 w-full sm:w-auto">
+          <TabsTrigger value="bookmakers" className="flex-1 sm:flex-none gap-1.5" data-testid="tab-bookmakers">
+            <Trophy className="w-4 h-4" />
+            <span className="hidden sm:inline">Bookmakers</span>
+            <span className="sm:hidden">Books</span>
           </TabsTrigger>
-          <TabsTrigger value="affiliate" data-testid="tab-affiliate">
-            <BarChart3 className="w-4 h-4 mr-2" /> Affiliate
+          <TabsTrigger value="affiliate" className="flex-1 sm:flex-none gap-1.5" data-testid="tab-affiliate">
+            <BarChart3 className="w-4 h-4" />
+            <span className="hidden sm:inline">Affiliate</span>
+            <span className="sm:hidden">Clicks</span>
           </TabsTrigger>
         </TabsList>
         <TabsContent value="bookmakers">

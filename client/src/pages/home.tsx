@@ -12,7 +12,7 @@ import type { Bookmaker, Bonus } from "@shared/schema";
 
 function HeroSection() {
   return (
-    <section className="relative overflow-visible hero-gradient py-20 md:py-28">
+    <section className="relative overflow-visible hero-gradient py-14 sm:py-20 md:py-28">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 pointer-events-none" />
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl" />
@@ -23,13 +23,13 @@ function HeroSection() {
         <Badge variant="outline" className="mb-6 bg-primary/10 border-primary/30 text-primary">
           Trusted by 50,000+ No-KYC Bettors
         </Badge>
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight tracking-tight">
           Find the Best
           <span className="block bg-gradient-to-r from-primary via-amber-400 to-yellow-300 bg-clip-text text-transparent">
             No-KYC Sportsbooks
           </span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed">
           Expert reviews, trust scores, and exclusive bonuses. We rate every no-KYC crypto bookmaker
           so you can bet privately and with confidence.
         </p>
@@ -166,15 +166,15 @@ function TopBookmakers() {
   });
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16">
-      <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
+    <section className="max-w-6xl mx-auto px-4 py-10 sm:py-16">
+      <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8 flex-wrap">
         <div>
           <Badge variant="secondary" className="mb-2">
             <Trophy className="w-3 h-3 mr-1" />
             Rankings
           </Badge>
-          <h2 className="text-3xl font-bold">Top Crypto Bookmakers</h2>
-          <p className="text-muted-foreground mt-1">Ranked by our expert team based on trust, odds, and user experience</p>
+          <h2 className="text-2xl sm:text-3xl font-bold">Top Crypto Bookmakers</h2>
+          <p className="text-muted-foreground mt-1 text-sm sm:text-base">Ranked by our expert team based on trust, odds, and user experience</p>
         </div>
         <Link href="/bookmakers">
           <Button variant="ghost" data-testid="button-view-all">
@@ -223,15 +223,15 @@ function BonusShowcase() {
 
   return (
     <section className="bg-card border-y">
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="flex items-end justify-between gap-4 mb-8 flex-wrap">
+      <div className="max-w-6xl mx-auto px-4 py-10 sm:py-16">
+        <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8 flex-wrap">
           <div>
             <Badge variant="secondary" className="mb-2">
               <Gift className="w-3 h-3 mr-1" />
               Bonuses
             </Badge>
-            <h2 className="text-3xl font-bold">Latest Crypto Bonuses</h2>
-            <p className="text-muted-foreground mt-1">Exclusive bonus offers from top-rated bookmakers</p>
+            <h2 className="text-2xl sm:text-3xl font-bold">Latest Crypto Bonuses</h2>
+            <p className="text-muted-foreground mt-1 text-sm sm:text-base">Exclusive bonus offers from top-rated bookmakers</p>
           </div>
           <Link href="/bonuses">
             <Button variant="ghost" data-testid="button-view-all-bonuses">
@@ -282,13 +282,13 @@ function BonusShowcase() {
 
 function TrustSection() {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16">
-      <div className="text-center mb-12">
+    <section className="max-w-6xl mx-auto px-4 py-10 sm:py-16">
+      <div className="text-center mb-8 sm:mb-12">
         <Badge variant="secondary" className="mb-2">
           <Shield className="w-3 h-3 mr-1" />
           Trust & Safety
         </Badge>
-        <h2 className="text-3xl font-bold mb-3">Our Trust Score System</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-3">Our Trust Score System</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Every bookmaker is rated on a 0-10 scale based on payout reliability, user reports, and our expert testing.
           We protect bettors by exposing unreliable operators.
