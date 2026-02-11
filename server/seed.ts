@@ -9,7 +9,7 @@ export async function seedDatabase() {
     {
       name: "Stake",
       slug: "stake",
-      logo: "https://img.icons8.com/fluency/96/blockchain-technology.png",
+      logo: "/logos/stake.png",
       description: "The world's leading crypto casino and sportsbook with instant payouts and thousands of games.",
       longDescription: "Stake has established itself as the undisputed leader in the crypto gambling space. Founded in 2017, Stake offers an unmatched combination of sports betting, casino games, and original games. Their platform supports instant deposits and withdrawals in multiple cryptocurrencies, with no KYC required for crypto users. The site features a sleek, modern interface and offers some of the best odds in the industry. Their VIP program is legendary, offering personalized rewards and dedicated support for high-volume players.",
       websiteUrl: "https://stake.com",
@@ -37,7 +37,7 @@ export async function seedDatabase() {
     {
       name: "BC.Game",
       slug: "bc-game",
-      logo: "https://img.icons8.com/fluency/96/bitcoin.png",
+      logo: "/logos/bcgame.png",
       description: "Community-driven crypto casino with 90+ cryptos supported and generous bonuses.",
       longDescription: "BC.Game is a community-first crypto casino and sportsbook that has rapidly grown to become one of the top platforms in the space. Supporting over 90 cryptocurrencies, BC.Game offers unmatched flexibility for crypto users. Their platform features a unique rewards system including daily spins, tasks, and a generous rakeback program. The sportsbook covers major leagues and offers competitive odds, while the casino section includes thousands of slots and table games from top providers.",
       websiteUrl: "https://bc.game",
@@ -65,7 +65,7 @@ export async function seedDatabase() {
     {
       name: "Cloudbet",
       slug: "cloudbet",
-      logo: "https://img.icons8.com/fluency/96/cloud.png",
+      logo: "/logos/cloudbet.png",
       description: "Premium crypto sportsbook with the best odds and highest limits for serious bettors.",
       longDescription: "Cloudbet is the gold standard for serious crypto sports bettors. Established in 2013, they are one of the oldest and most trusted names in crypto gambling. Cloudbet is known for offering some of the best odds in the industry, the highest betting limits, and a premium user experience. Their platform also features a full casino suite and live dealer games. With a strong focus on security and fair play, Cloudbet has maintained an impeccable reputation over the years.",
       websiteUrl: "https://cloudbet.com",
@@ -93,7 +93,7 @@ export async function seedDatabase() {
     {
       name: "Duelbits",
       slug: "duelbits",
-      logo: "https://img.icons8.com/fluency/96/joystick.png",
+      logo: "/logos/duelbits.png",
       description: "Fast-growing crypto casino and sportsbook with an esports focus and great promotions.",
       longDescription: "Duelbits has quickly risen through the ranks to become a favorite among younger crypto gambling enthusiasts. With a strong focus on esports betting and a sleek modern interface, Duelbits appeals to the gaming generation. Their platform offers competitive odds across major sports, a comprehensive casino section, and unique promotional events. The site supports multiple cryptocurrencies and offers fast withdrawals with minimal fees.",
       websiteUrl: "https://duelbits.com",
@@ -121,7 +121,7 @@ export async function seedDatabase() {
     {
       name: "Rollbit",
       slug: "rollbit",
-      logo: "https://img.icons8.com/fluency/96/dice.png",
+      logo: "/logos/rollbit.png",
       description: "Innovative crypto casino with NFT integration, trading features, and unique gambling experiences.",
       longDescription: "Rollbit stands out from the crowd with its innovative approach to crypto gambling. Beyond traditional casino games and sports betting, Rollbit offers NFT trading, crypto futures, and unique gamified experiences. Their platform features original games with provably fair algorithms, a comprehensive sportsbook, and a thriving marketplace for NFTs and collectibles. Rollbit's unique RLB token adds another layer of engagement for dedicated users.",
       websiteUrl: "https://rollbit.com",
@@ -149,7 +149,7 @@ export async function seedDatabase() {
     {
       name: "Sportsbet.io",
       slug: "sportsbet-io",
-      logo: "https://img.icons8.com/fluency/96/football2.png",
+      logo: "/logos/sportsbetio.png",
       description: "Leading crypto sportsbook with major sponsorships and a proven track record.",
       longDescription: "Sportsbet.io is part of the Yolo Group and has established itself as one of the most reputable crypto sportsbooks in the industry. With major sponsorships in football (including Premier League teams), Sportsbet.io brings legitimacy and trust to the crypto betting space. Their platform offers extensive sports coverage with competitive odds, live betting, and a smooth mobile experience. They also feature a casino section with popular slots and table games.",
       websiteUrl: "https://sportsbet.io",
@@ -177,7 +177,7 @@ export async function seedDatabase() {
     {
       name: "WildVegas",
       slug: "wildvegas",
-      logo: "https://img.icons8.com/fluency/96/slot-machine.png",
+      logo: "/logos/wildvegas.png",
       description: "Example of a low-trust bookmaker - delayed payouts and poor customer service reported.",
       longDescription: "WildVegas has received numerous complaints from users regarding delayed withdrawals and unresponsive customer support. While their platform offers a range of casino games, the persistent payout issues have severely damaged their reputation in the crypto gambling community. We include them in our database to warn users about potential risks. Multiple users have reported waiting weeks for payouts that should be instant with cryptocurrency.",
       websiteUrl: "https://wildvegas.com",
