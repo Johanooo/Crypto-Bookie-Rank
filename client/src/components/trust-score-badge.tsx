@@ -2,7 +2,7 @@ import { Shield, ShieldAlert, ShieldCheck, ShieldX } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 function getTrustColor(score: number): string {
-  if (score >= 9) return "bg-emerald-500 dark:bg-emerald-600 text-white";
+  if (score >= 9) return "bg-emerald-500 dark:bg-emerald-500 text-white shadow-[0_0_12px_hsl(145_60%_45%/0.3)]";
   if (score >= 7) return "bg-green-500 dark:bg-green-600 text-white";
   if (score >= 5) return "bg-yellow-500 dark:bg-yellow-600 text-white";
   if (score >= 3) return "bg-orange-500 dark:bg-orange-600 text-white";

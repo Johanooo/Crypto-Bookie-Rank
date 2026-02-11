@@ -214,37 +214,73 @@
   .gold-gradient-text {
     background: linear-gradient(
       90deg,
-      hsl(51 80% 45%) 0%,
-      hsl(51 100% 55%) 20%,
-      hsl(54 100% 78%) 40%,
-      hsl(60 100% 92%) 50%,
-      hsl(54 100% 78%) 60%,
-      hsl(51 100% 55%) 80%,
-      hsl(51 80% 45%) 100%
+      hsl(43 60% 40%) 0%,
+      hsl(46 80% 50%) 15%,
+      hsl(50 100% 65%) 30%,
+      hsl(55 100% 85%) 45%,
+      hsl(60 100% 95%) 50%,
+      hsl(55 100% 85%) 55%,
+      hsl(50 100% 65%) 70%,
+      hsl(46 80% 50%) 85%,
+      hsl(43 60% 40%) 100%
     );
-    background-size: 200% auto;
+    background-size: 300% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gold-shine 3s ease-in-out infinite;
+    animation: gold-shine 4s ease-in-out infinite;
   }
 
   @keyframes gold-shine {
-    0%, 100% { background-position: -50% center; }
-    50% { background-position: 150% center; }
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
   }
 
   .gold-glow {
-    box-shadow: 0 0 15px hsl(51 100% 50% / 0.2), 0 0 30px hsl(51 100% 50% / 0.08), 0 0 50px hsl(51 100% 50% / 0.04);
+    box-shadow:
+      0 0 10px hsl(51 100% 50% / 0.25),
+      0 0 25px hsl(51 100% 50% / 0.12),
+      0 0 50px hsl(51 100% 50% / 0.06);
   }
 
   .gold-glow-strong {
-    box-shadow: 0 0 15px hsl(51 100% 50% / 0.35), 0 0 35px hsl(51 100% 50% / 0.15), 0 0 60px hsl(51 100% 50% / 0.08);
+    box-shadow:
+      0 0 10px hsl(51 100% 50% / 0.4),
+      0 0 30px hsl(51 100% 50% / 0.2),
+      0 0 60px hsl(51 100% 50% / 0.1),
+      0 0 100px hsl(51 100% 50% / 0.05);
   }
 
   .gold-border-glow {
-    border: 1px solid hsl(51 100% 50% / 0.4);
-    box-shadow: 0 0 15px hsl(51 100% 50% / 0.15), 0 0 30px hsl(51 100% 50% / 0.06), inset 0 0 15px hsl(51 100% 50% / 0.04);
+    border: 1px solid hsl(51 100% 50% / 0.45);
+    box-shadow:
+      0 0 10px hsl(51 100% 50% / 0.2),
+      0 0 25px hsl(51 100% 50% / 0.08),
+      inset 0 1px 0 hsl(51 100% 70% / 0.1),
+      inset 0 0 20px hsl(51 100% 50% / 0.04);
+  }
+
+  @keyframes border-shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  .gold-shimmer-border {
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(hsl(var(--card)), hsl(var(--card))),
+      linear-gradient(
+        90deg,
+        hsl(51 100% 50% / 0.2),
+        hsl(51 100% 50% / 0.6),
+        hsl(55 100% 80% / 0.9),
+        hsl(51 100% 50% / 0.6),
+        hsl(51 100% 50% / 0.2)
+      );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 200% 100%;
+    animation: border-shimmer 3s linear infinite;
   }
 
   .card-premium {
@@ -254,6 +290,25 @@
 
   .section-gradient {
     background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(222 40% 5%) 100%);
+  }
+
+  .section-glow {
+    position: relative;
+  }
+  .section-glow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(51 100% 50% / 0.4), transparent);
+  }
+
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(51 100% 50% / 0.3), hsl(51 100% 70% / 0.5), hsl(51 100% 50% / 0.3), transparent);
   }
 
   @keyframes float-slow {
@@ -273,13 +328,18 @@
   }
 
   @keyframes pulse-glow {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.7; }
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
   }
 
   @keyframes shimmer {
     0% { background-position: -200% center; }
     100% { background-position: 200% center; }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
   }
 
   .animate-float-slow {
@@ -304,6 +364,18 @@
   }
 
   .btn-glow {
-    box-shadow: 0 0 20px hsl(51 100% 50% / 0.35), 0 0 40px hsl(51 100% 50% / 0.12), 0 4px 12px hsl(0 0% 0% / 0.3);
+    box-shadow:
+      0 0 15px hsl(51 100% 50% / 0.4),
+      0 0 30px hsl(51 100% 50% / 0.2),
+      0 0 50px hsl(51 100% 50% / 0.08),
+      0 4px 12px hsl(0 0% 0% / 0.3);
+  }
+
+  .text-gold {
+    color: hsl(51 100% 50%);
+  }
+
+  .text-gold-light {
+    color: hsl(51 100% 70%);
   }
 }

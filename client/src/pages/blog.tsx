@@ -14,14 +14,14 @@ export default function Blog() {
 
   return (
     <div>
-      <section className="relative overflow-hidden border-b border-border/50" style={{ background: "linear-gradient(160deg, hsl(222 50% 5%) 0%, hsl(220 40% 10%) 50%, hsl(222 45% 7%) 100%)" }}>
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px]" />
-        <div className="max-w-6xl mx-auto px-4 py-10 sm:py-14 relative">
+      <section className="relative overflow-hidden border-b border-border/50 section-glow" style={{ background: "linear-gradient(160deg, hsl(222 50% 5%) 0%, hsl(220 40% 10%) 50%, hsl(222 45% 7%) 100%)" }}>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-primary/8 rounded-full blur-[100px]" />
+        <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16 relative">
           <Badge variant="secondary" className="mb-3">
             <BookOpen className="w-3 h-3 mr-1" />
             Guides & News
           </Badge>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" data-testid="text-page-title">Crypto Betting Blog</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" data-testid="text-page-title">Crypto Betting <span className="gold-gradient-text">Blog</span></h1>
           <p className="text-gray-400 mt-2 text-sm sm:text-base max-w-2xl">Expert guides, news, and tips for crypto sports betting</p>
         </div>
       </section>

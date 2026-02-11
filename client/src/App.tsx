@@ -41,7 +41,7 @@ function Navbar() {
 
   return (
     <nav className="sticky top-0 z-[9999] bg-background/80 backdrop-blur-md border-b border-border/50">
-      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+      <div className="h-[2px] w-full" style={{ background: "linear-gradient(90deg, transparent, hsl(51 100% 50% / 0.5), hsl(55 100% 70% / 0.7), hsl(51 100% 50% / 0.5), transparent)" }} />
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between gap-4 h-14">
           <Link href="/">
