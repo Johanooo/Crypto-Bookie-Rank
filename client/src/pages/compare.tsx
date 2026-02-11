@@ -10,7 +10,7 @@ import { ArrowRight, X, GitCompare } from "lucide-react";
 import type { Bookmaker } from "@shared/schema";
 
 export default function Compare() {
-  const [selectedSlugs, setSelectedSlugs] = useState<string[]>(["stake", "bc-game"]);
+  const [selectedSlugs, setSelectedSlugs] = useState<string[]>(["mystake", "playbet"]);
 
   const { data: bookmakers } = useQuery<Bookmaker[]>({
     queryKey: ["/api/bookmakers"],

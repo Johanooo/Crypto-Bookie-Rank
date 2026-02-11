@@ -5,9 +5,12 @@ A premium crypto betting review and comparison platform with trust scores, affil
 
 ## Recent Changes
 - 2026-02-11: Initial build - database schema, seed data, all frontend pages, admin dashboard, API routes
+- 2026-02-11: Updated bookmaker rankings - MyStake #1, Playbet #2, BC.Game #3, Velobet #4
+- 2026-02-11: Comprehensive mobile optimization across all pages
 - Trust Score system (0-10) for rating bookmaker reliability
-- 7 bookmakers seeded with full data including one low-trust example (WildVegas)
+- 10 bookmakers with full data including one low-trust example (WildVegas)
 - Blog/guides section with 3 SEO-optimized articles
+- Real bonuses with accurate data for all top bookmakers
 
 ## Architecture
 
